@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // on below line calling method to
+        // below line calling method to
         // load our recycler views and search view.
         initializeAlbumsRV();
         initializePopularAlbumsRV();
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         initializeSearchView();
     }
 
-    // below method is use to initialize search view.
+    //  method is use to initialize search view.
     private void initializeSearchView() {
         // on below line initializing our
         // edit text for search views.
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    // below method is use to get token.
+    //  method is use to get token.
     private String getToken() {
         // on below line getting token from shared prefs.
         SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("MainActivity", "Response: " + response);
+
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     // on below line getting access token and
@@ -107,13 +107,14 @@ public class MainActivity extends AppCompatActivity {
                     myEdit.apply();
                 } catch (JSONException e) {
                     e.printStackTrace();
+
                 }
 
             }
         }, new com.android.volley.Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("MainActivity", "Error: " + error.toString());
+
                 // method to handle errors.
                 Toast.makeText(MainActivity.this, "Fail to get response = " + error, Toast.LENGTH_SHORT).show();
             }
@@ -187,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                 return headers;
             }
         };
-        // on below line adding request to queue.
+
         queue.add(albumObjReq);
     }
 
@@ -245,21 +246,21 @@ public class MainActivity extends AppCompatActivity {
                 return headers;
             }
         };
-        // line adding request to queue.
+
         queue.add(albumObjReq);
     }
 
     private void initializeTrendingAlbumsRV() {
-        // on below line creating list, initializing adapter
+        //creating list, initializing adapter
         // and setting it to recycler view.
         RecyclerView albumsRV = findViewById(R.id.idRVTrendingAlbums);
         ArrayList<AlbumRVModal> albumRVModalArrayList = new ArrayList<>();
         AlbumRVAdapter albumRVAdapter = new AlbumRVAdapter(albumRVModalArrayList, this);
         albumsRV.setAdapter(albumRVAdapter);
-        // on below line creating a variable for url
+
         String url = "https://api.spotify.com/v1/albums?ids=1P4eCx5b11Tfmi4s1GmWmQ%2C2SsEtiB6yJYn8hRRAmtVda%2C7hhxms8KCwlQCWffIJpN9b%2C3umvKIjsD484pa9pCyPK2x%2C3OHC6XD29wXWADtAOP2geV%2C3RZxrS2dDZlbsYtMRM89v8%2C24C47633GRlozws7WBth7t";
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-        // line making json object request to parse json data.
+
         JsonObjectRequest albumObjReq = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
