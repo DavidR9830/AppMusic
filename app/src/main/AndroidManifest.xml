@@ -15,23 +15,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpotifyJava"
         tools:targetApi="31">
+
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="com.appmusic" />
+                <data android:host="callback" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".SearchActivity"
             android:exported="false" />
         <activity
             android:name=".AlbumDetailActivity"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-                <data android:scheme="com.appmusic"/>
-                <data android:host="callback"/>
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

@@ -2,14 +2,12 @@ package com.david.appmusic;
 
 
 public class TrackRVModal {
-    // on below line creating variables
-    // for track name, track artist and id.
+
     private String trackName;
     private String trackArtist;
     private String id;
 
-    // on below line creating
-    // constructors, getters and setters.
+
     public String getTrackName() {
         return trackName;
     }

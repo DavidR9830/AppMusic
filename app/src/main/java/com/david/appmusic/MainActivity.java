@@ -45,9 +45,8 @@ public class MainActivity extends AppCompatActivity {
         initializeSearchView();
     }
 
-    //  method is use to initialize search view.
+
     private void initializeSearchView() {
-        // on below line initializing our
         // edit text for search views.
         EditText searchEdt = findViewById(R.id.idEdtSearch);
         searchEdt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
@@ -63,10 +62,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // method is use to open search
+    //open search
     // tracks activity to search tracks.
     private void searchTracks(String searchQuery) {
-        // on below line opening search activity to
         // display search results in search activity.
         Intent i = new Intent(MainActivity.this, SearchActivity.class);
         i.putExtra("searchQuery", searchQuery);
@@ -75,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     //  method is use to get token.
     private String getToken() {
-        // on below line getting token from shared prefs.
+
         SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         return sh.getString("token", "Not Found");
     }
@@ -92,25 +90,22 @@ public class MainActivity extends AppCompatActivity {
         String url = "https://accounts.spotify.com/api/token?grant_type=client_credentials";
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         // on below line making string request to generate access token.
-        StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
+        StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
 
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    // on below line getting access token and
-                    // saving it to shared preferences.
-                    String tk = jsonObject.getString("access_token");
-                    SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-                    SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                    myEdit.putString("token", "Bearer " + tk);
-                    myEdit.apply();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-
-                }
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                // on below line getting access token and
+                // saving it to shared preferences.
+                String tk = jsonObject.getString("access_token");
+                SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                myEdit.putString("token", "Bearer " + tk);
+                myEdit.apply();
+            } catch (JSONException e) {
+                e.printStackTrace();
 
             }
+
         }, new com.android.volley.Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -124,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 HashMap<String, String> headers = new HashMap<>();
                 // on below line passing headers.
                 // Make sure to add your authorization.
-                headers.put("Authorization", "Basic OWFmMmFmY2FjMzU2NDA3Nzk1N2EyODViZmMyNTgzODc=:NGJjZmRjMDdhYzExNDAyYWEyOTdlODI1OTU1ODBiNzg=");
+                headers.put("Authorization", "Basic OWFmMmFmY2FjMzU2NDA3Nzk1N2EyODViZmMyNTgzODc6NGJjZmRjMDdhYzExNDAyYWEyOTdlODI1OTU1ODBiNzg=");
                 headers.put("Content-Type", "application/x-www-form-urlencoded");
                 return headers;
             }
@@ -141,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         AlbumRVAdapter albumRVAdapter = new AlbumRVAdapter(albumRVModalArrayList, this);
         albumsRV.setAdapter(albumRVAdapter);
 
-        String url = "https://api.spotify.com/v1/albums?ids=2oZSF17FtHQ9sYBscQXoBe%2C0z7bJ6UpjUw8U4TATtc5Ku%2C36UJ90D0e295TvlU109Xvy%2C3uuu6u13U0KeVQsZ3CZKK4%2C45ZIondgVoMB84MQQaUo9T%2C15CyNDuGY5fsG0Hn9rjnpG%2C1HeX4SmCFW4EPHQDvHgrVS%2C6mCDTT1XGTf48p6FkK9qFL";
+        String url = "https://api.spotify.com/v1/albums?ids=0lgs2Sa82lyX89nBUWyUy6,6Ad1E9vl75ZB3Ir87zwXIJ,7aYMP5hWW3v4U6VYLIzlz6,45gsxfnJ5Nt2RZp82SQenc";
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         //  line making json object request to parse json data.
         JsonObjectRequest albumObjReq = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -199,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
         AlbumRVAdapter albumRVAdapter = new AlbumRVAdapter(albumRVModalArrayList, this);
         albumsRV.setAdapter(albumRVAdapter);
         // creating a variable for url
-        String url = "https://api.spotify.com/v1/albums?ids=0sjyZypccO1vyihqaAkdt3%2C17vZRWjKOX7TmMktjQL2Qx%2C7lF34sP6HtRAL7VEMvYHff%2C2zXKlf81VmDHIMtQe3oD0r%2C7Gws1vUsWltRs58x8QuYVQ%2C7uftfPn8f7lwtRLUrEVRYM%2C7kSY0fqrPep5vcwOb1juye";
+        String url = "https://api.spotify.com/v1/albums?ids=4FftCsAcXXD1nFO9RFUNFO,7dqftJ3kas6D0VAdmt3k3V,1F46k12341LHQGIFlMjop4,23krijKfse53ocaki0SfA0,6gp7h46R7nNNYBlN04dEQY";
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         // on below line making json object request to parse json data.
         JsonObjectRequest albumObjReq = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -222,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
                         String release_date = albumObj.getString("release_date");
                         int total_tracks = albumObj.getInt("total_tracks");
                         String type = albumObj.getString("type");
-                        // on below line adding data to array list.
+
                         albumRVModalArrayList.add(new AlbumRVModal(album_type, artistName, external_ids, external_urls, href, id, imgUrl, label, name, popularity, release_date, total_tracks, type));
                     }
                     albumRVAdapter.notifyDataSetChanged();
@@ -251,14 +246,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeTrendingAlbumsRV() {
-        //creating list, initializing adapter
-        // and setting it to recycler view.
+
         RecyclerView albumsRV = findViewById(R.id.idRVTrendingAlbums);
         ArrayList<AlbumRVModal> albumRVModalArrayList = new ArrayList<>();
         AlbumRVAdapter albumRVAdapter = new AlbumRVAdapter(albumRVModalArrayList, this);
         albumsRV.setAdapter(albumRVAdapter);
 
-        String url = "https://api.spotify.com/v1/albums?ids=1P4eCx5b11Tfmi4s1GmWmQ%2C2SsEtiB6yJYn8hRRAmtVda%2C7hhxms8KCwlQCWffIJpN9b%2C3umvKIjsD484pa9pCyPK2x%2C3OHC6XD29wXWADtAOP2geV%2C3RZxrS2dDZlbsYtMRM89v8%2C24C47633GRlozws7WBth7t";
+        String url = "https://api.spotify.com/v1/albums?ids=5WTsC6KDdxp9xVQrAMIU6c,2d9BCZeAAhiZWPpbX9aPCW,06mXfvDsRZNfnsGZvX2zpb,5fY8mYgYGkyaJ9XvVOzVQA";
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
 
         JsonObjectRequest albumObjReq = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {

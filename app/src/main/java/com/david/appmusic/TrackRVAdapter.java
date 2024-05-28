@@ -14,11 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class TrackRVAdapter extends RecyclerView.Adapter<TrackRVAdapter.ViewHolder> {
-    // creating variables for list and context
+
     private ArrayList<TrackRVModal> trackRVModals;
     private Context context;
 
-    // creating constructor on below line.
+
     public TrackRVAdapter(ArrayList<TrackRVModal> trackRVModals, Context context) {
         this.trackRVModals = trackRVModals;
         this.context = context;
@@ -27,14 +27,14 @@ public class TrackRVAdapter extends RecyclerView.Adapter<TrackRVAdapter.ViewHold
     @NonNull
     @Override
     public TrackRVAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // inflating layout on below line.
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.track_rv_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TrackRVAdapter.ViewHolder holder, int position) {
-        // setting data to text views.
+
         TrackRVModal trackRVModal = trackRVModals.get(position);
         holder.trackNameTV.setText(trackRVModal.getTrackName());
         holder.trackArtistTV.setText(trackRVModal.getTrackArtist());
@@ -56,7 +56,7 @@ public class TrackRVAdapter extends RecyclerView.Adapter<TrackRVAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        // creating and initializing variables for text views.
+
         private TextView trackNameTV, trackArtistTV;
 
         public ViewHolder(@NonNull View itemView) {
